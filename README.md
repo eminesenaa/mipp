@@ -364,7 +364,7 @@ copies or substantial portions of the Software.
 
 <div align="center">
 
-**MIPP** · AYBU Computer Engineering · 2025
+**MIPP** · AYBU Computer Engineering · 2026
 
 [tinyurl.com/mipp-team6](https://tinyurl.com/mipp-team6)
 
