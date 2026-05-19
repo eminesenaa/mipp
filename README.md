@@ -318,7 +318,7 @@ lib/
 
 | | Name | Role |
 |---|---|---|
-| **RY** | Rümeysa Yavuzkanat | Lead Developer · System Architecture · Frontend Engineering · UI/UX |
+| **RY** | Rümeysa Yavuzkanat | System Architecture · Frontend Engineering · UI/UX |
 | **ES** | Emine Sena Top | Backend Architecture · Firebase · Firestore |
 | **EÜ** | Ege Ündeniş | AI Systems · LLM Integration · AI Evaluation Infrastructure |
 
