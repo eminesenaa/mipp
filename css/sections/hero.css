@@ -1,0 +1,145 @@
+/* ============================================================
+   SECTION — Hero
+   ============================================================ */
+
+.hero {
+  padding: 120px var(--space-2xl) 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* ── Eyebrow badge ───────────────────────────────────────── */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--grad-navy-soft);
+  border: 1px solid rgba(26, 58, 107, 0.15);
+  color: var(--navy);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-mono);
+}
+
+/* ── Heading ─────────────────────────────────────────────── */
+.hero h1 {
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 1.2rem;
+}
+
+.hero h1 span {
+  background: var(--grad-navy);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Description ─────────────────────────────────────────── */
+.hero-desc {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--ink-2);
+  margin-bottom: var(--space-xl);
+}
+
+/* ── Chip list ───────────────────────────────────────────── */
+.hero-chips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: 2.5rem;
+}
+
+/* ── CTA row ─────────────────────────────────────────────── */
+.hero-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+/* ── Right-side visual grid ──────────────────────────────── */
+.hero-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.hero-card {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.hero-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(26, 58, 107, 0.2);
+}
+
+/* Card icon wrapper */
+.card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--grad-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+  color: #fff;
+}
+
+.card-icon svg,
+.card-icon i {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+}
+
+.card-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+
+.card-sub {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.5;
+  font-family: var(--font-mono);
+}
+
+.card-stat {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: var(--grad-navy);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 0.8rem;
+  letter-spacing: -0.03em;
+}
+
+/* ── Fade edge into showcase dark section ────────────────── */
+.hero-fade-edge {
+  height: 80px;
+  background: linear-gradient(to bottom, var(--bg) 0%, #0d1f3c 100%);
+  margin-top: -1px;
+}

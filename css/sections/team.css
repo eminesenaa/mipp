@@ -1,0 +1,67 @@
+/* ============================================================
+   SECTION — Team
+   ============================================================ */
+
+.team-section {
+  background: var(--bg-2);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ── Team grid ───────────────────────────────────────────── */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+/* ── Team member card ────────────────────────────────────── */
+.team-card {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: border-color var(--transition-fast);
+}
+
+.team-card:hover {
+  border-color: rgba(26, 58, 107, 0.25);
+}
+
+.team-card .avatar {
+  margin-bottom: var(--space-md);
+}
+
+.team-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.team-role {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+/* ── Advisor card ────────────────────────────────────────── */
+.advisor-card {
+  background: var(--grad-navy-soft);
+  border: 1px solid rgba(26, 58, 107, 0.15);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.advisor-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--navy-light);
+  margin-bottom: 0.2rem;
+}

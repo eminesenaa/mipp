@@ -1,0 +1,159 @@
+/* ============================================================
+   RESPONSIVE — All @media overrides
+   Breakpoint: 860px
+   ============================================================ */
+
+@media (max-width: 860px) {
+  /* ── Nav ───────────────────────────────────────────────── */
+  nav {
+    padding: 0 var(--space-lg);
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  /* ── Hero ──────────────────────────────────────────────── */
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 90px var(--space-lg) 60px;
+    gap: 2.5rem;
+  }
+
+  .hero-visual {
+    display: none;
+  }
+
+  .hero-fade-edge {
+    height: 48px;
+  }
+
+  /* ── Showcase ──────────────────────────────────────────── */
+  .showcase {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+
+  .showcase-header {
+    margin-bottom: 28px;
+    padding: 0 var(--space-lg);
+  }
+
+  .showcase-logo {
+    height: 48px;
+    margin-bottom: 12px;
+  }
+
+  /* Mobile stage — shorter, phones still overlap */
+  .showcase-phones {
+    height: 260px;
+  }
+
+  /* Scale phones down proportionally via height */
+  .phone-center {
+    height: 230px;
+    animation: none;
+    /* keep centered */
+    transform: translateX(-50%);
+  }
+
+  .phone-left {
+    height: 180px;
+    animation: none;
+    transform: translateX(calc(-50% - 100px)) rotate(-14deg) translateY(-14px);
+  }
+
+  .phone-right {
+    height: 180px;
+    animation: none;
+    transform: translateX(calc(-50% + 100px)) rotate(14deg) translateY(-14px);
+  }
+
+  /* Lock transforms on hover for touch devices */
+  .phone-center:hover {
+    transform: translateX(-50%);
+  }
+
+  .phone-left:hover {
+    transform: translateX(calc(-50% - 100px)) rotate(-14deg) translateY(-14px);
+  }
+
+  .phone-right:hover {
+    transform: translateX(calc(-50% + 100px)) rotate(14deg) translateY(-14px);
+  }
+
+  .showcase-footer {
+    margin-top: 32px;
+    padding: 0 var(--space-lg);
+  }
+
+  /* ── Stats ─────────────────────────────────────────────── */
+  .stats-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat {
+    padding: var(--space-xl) 0 var(--space-xl) var(--space-md);
+  }
+
+  .stat:nth-child(2) {
+    border-right: none;
+  }
+
+  .stat:nth-child(3) {
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .stat:nth-child(4) {
+    border-right: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* ── Section wrap ──────────────────────────────────────── */
+  .section-wrap {
+    padding: 60px var(--space-lg);
+  }
+
+  /* ── Features ──────────────────────────────────────────── */
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Videos ────────────────────────────────────────────── */
+  .video-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .video-featured .video-thumb {
+    min-height: 200px;
+  }
+
+  .video-featured-info {
+    padding: 1.8rem;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Team ──────────────────────────────────────────────── */
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── CTA ───────────────────────────────────────────────── */
+  .cta-inner {
+    grid-template-columns: 1fr;
+    padding: 60px var(--space-lg);
+    gap: var(--space-xl);
+  }
+
+  /* ── Footer ────────────────────────────────────────────── */
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+  }
+}
