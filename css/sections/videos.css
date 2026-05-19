@@ -1,0 +1,246 @@
+/* ============================================================
+   SECTION — Videos
+   ============================================================ */
+
+.videos-section {
+  border-top: 1px solid var(--rule);
+}
+
+/* ── Shared thumbnail base ───────────────────────────────── */
+.video-thumb {
+  position: relative;
+  background: #0a1628;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  overflow: hidden;
+}
+
+.thumb-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.thumb-glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(35, 82, 160, 0.4) 0%,
+    transparent 70%
+  );
+}
+
+/* ── Play button ─────────────────────────────────────────── */
+.play-btn {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--grad-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(26, 58, 107, 0.5);
+  transition: transform var(--transition-fast);
+  z-index: 2;
+  color: #fff;
+}
+
+.play-btn i {
+  font-size: 20px;
+}
+
+/* ── Featured video ──────────────────────────────────────── */
+.video-featured {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  background: var(--navy-dark);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: var(--space-md);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.video-featured:hover {
+  transform: scale(1.005);
+}
+
+.video-featured:hover .play-btn,
+.video-card:hover .play-btn {
+  transform: scale(1.1);
+}
+
+.video-featured-info {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+/* ── Video grid (3 cards) ────────────────────────────────── */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.video-card {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.video-card:hover {
+  border-color: rgba(26, 58, 107, 0.3);
+  transform: translateY(-2px);
+}
+
+.video-card .video-thumb {
+  aspect-ratio: 16 / 9;
+  min-height: auto;
+}
+
+.video-card .play-btn {
+  width: 44px;
+  height: 44px;
+}
+
+.video-card .play-btn i {
+  font-size: 16px;
+}
+
+.video-info {
+  padding: 1.2rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* ── Video metadata atoms ────────────────────────────────── */
+.vtag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+/* Featured card — light text on dark background */
+.video-featured-info .vtag {
+  color: #6ea8fe;
+}
+
+.video-featured-info .vtitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+}
+
+.video-featured-info .vdesc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.65;
+}
+
+/* Grid cards — dark text on light background */
+.video-info .vtag {
+  color: var(--navy-light);
+}
+
+.video-info .vtitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
+}
+
+.video-info .vdesc {
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+/* ── Modal video element ─────────────────────────────────── */
+/*
+   Replaces the old iframe.
+   Fills the modal-video-wrap (aspect-ratio 16/9 set in components.css).
+   object-fit cover prevents letterboxing on unusual video ratios.
+*/
+.modal-video-wrap .modal-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain; /* contain keeps full frame visible */
+  background: #000;
+}
+
+/* ── Thumbnail state — injected by thumbnails.js ─────────── */
+.video-thumb.has-thumbnail .thumb-grid {
+  background-image:
+    linear-gradient(rgba(10, 22, 40, 0.55), rgba(10, 22, 40, 0.55)),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size:
+    auto,
+    32px 32px,
+    32px 32px;
+}
+
+.video-thumb.has-thumbnail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(10, 22, 40, 0.6) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.video-thumb.has-thumbnail .thumb-glow,
+.video-thumb.has-thumbnail .play-btn {
+  z-index: 2;
+}
+
+/* ── Modal placeholder (no video yet) ───────────────────── */
+.modal-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  background: var(--bg-2);
+}
+
+.modal-placeholder p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.modal-placeholder a {
+  font-size: 0.78rem;
+  color: var(--navy);
+  font-family: var(--font-mono);
+  border-bottom: 1px solid rgba(26, 58, 107, 0.3);
+  padding-bottom: 1px;
+}

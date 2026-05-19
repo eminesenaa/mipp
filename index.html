@@ -2,1051 +2,121 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIPP — AI-Powered Interview Preparation & Recruitment Ecosystem</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --bg: #ffffff;
-            --bg2: #f4f6f9;
-            --ink: #0f1923;
-            --ink2: #3a4455;
-            --muted: #8a94a6;
-            --rule: #e2e6ed;
-            --navy: #1a3a6b;
-            --navy-dark: #0f2448;
-            --navy-light: #2352a0;
-            --red: #d63a1a;
-            --orange: #f07020;
-            --grad-section: linear-gradient(135deg, #d63a1a 0%, #f07020 100%);
-            --grad-navy: linear-gradient(135deg, #1a3a6b 0%, #2352a0 100%);
-            --grad-navy-soft: linear-gradient(135deg, rgba(26, 58, 107, 0.08) 0%, rgba(35, 82, 160, 0.08) 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--ink);
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            overflow-x: hidden;
-        }
-
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 3rem;
-            height: 64px;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--rule);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-        }
-
-        .logo-mark {
-            width: 36px;
-            height: 36px;
-            background: var(--grad-navy);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1rem;
-            color: #fff;
-            letter-spacing: -0.03em;
-        }
-
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--navy-dark);
-            letter-spacing: -0.01em;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--ink);
-        }
-
-        .nav-cta {
-            background: var(--grad-navy);
-            color: #fff !important;
-            padding: 0.45rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 600 !important;
-        }
-
-        /* HERO */
-        .hero {
-            padding: 120px 3rem 80px;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
-
-        .hero-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--grad-navy-soft);
-            border: 1px solid rgba(26, 58, 107, 0.15);
-            color: var(--navy);
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding: 0.35rem 0.9rem;
-            border-radius: 100px;
-            margin-bottom: 1.5rem;
-            font-family: 'DM Mono', monospace;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.8rem, 5vw, 4.2rem);
-            font-weight: 800;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            color: var(--ink);
-            margin-bottom: 1.2rem;
-        }
-
-        .hero h1 span {
-            background: var(--grad-navy);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-desc {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--ink2);
-            margin-bottom: 2rem;
-        }
-
-        .hero-chips {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .chip {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 0.82rem;
-            color: var(--ink2);
-            font-weight: 500;
-        }
-
-        .chip-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--grad-navy);
-            flex-shrink: 0;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--grad-navy);
-            color: #fff;
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 0.75rem 1.8rem;
-            border-radius: 10px;
-            text-decoration: none;
-            transition: opacity 0.2s, transform 0.2s;
-            box-shadow: 0 4px 16px rgba(26, 58, 107, 0.25);
-        }
-
-        .btn-primary:hover {
-            opacity: 0.88;
-            transform: translateY(-1px);
-        }
-
-        .btn-ghost {
-            background: var(--bg2);
-            color: var(--ink);
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 0.75rem 1.8rem;
-            border-radius: 10px;
-            text-decoration: none;
-            border: 1px solid var(--rule);
-            transition: border-color 0.2s, transform 0.2s;
-        }
-
-        .btn-ghost:hover {
-            border-color: var(--navy-light);
-            transform: translateY(-1px);
-        }
-
-        /* HERO VISUAL */
-        .hero-visual {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
-        }
-
-        .hero-card {
-            background: var(--bg2);
-            border: 1px solid var(--rule);
-            border-radius: 14px;
-            padding: 1.4rem;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .hero-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(26, 58, 107, 0.2);
-        }
-
-        .card-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: var(--grad-navy);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .card-title {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 0.3rem;
-        }
-
-        .card-sub {
-            font-size: 0.72rem;
-            color: var(--muted);
-            line-height: 1.5;
-            font-family: 'DM Mono', monospace;
-        }
-
-        .card-stat {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: var(--grad-navy);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-top: 0.8rem;
-            letter-spacing: -0.03em;
-        }
-
-        /* STATS */
-        .stats-bar {
-            background: var(--navy-dark);
-        }
-
-        .stats-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 3rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .stat {
-            padding: 2.5rem 0;
-            border-right: 1px solid rgba(255, 255, 255, 0.08);
-            padding-left: 2rem;
-        }
-
-        .stat:first-child {
-            padding-left: 0;
-        }
-
-        .stat:last-child {
-            border-right: none;
-        }
-
-        .stat-num {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #6ea8fe 0%, #93c5fd 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.72rem;
-            color: rgba(255, 255, 255, 0.4);
-            margin-top: 0.3rem;
-            font-family: 'DM Mono', monospace;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        /* SECTION */
-        .section-wrap {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 3rem;
-        }
-
-        .section-eyebrow {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--red);
-            margin-bottom: 0.6rem;
-        }
-
-        .section-title {
-            font-size: clamp(1.8rem, 3vw, 2.6rem);
-            font-weight: 800;
-            letter-spacing: -0.025em;
-            line-height: 1.1;
-            color: var(--ink);
-            margin-bottom: 0.8rem;
-        }
-
-        /* section titles match poster red-orange */
-        .section-title-grad {
-            background: var(--grad-section);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-desc {
-            font-size: 0.95rem;
-            color: var(--muted);
-            line-height: 1.75;
-            max-width: 480px;
-            margin-bottom: 3rem;
-        }
-
-        /* FEATURES */
-        .features-section {
-            background: var(--bg2);
-            border-top: 1px solid var(--rule);
-            border-bottom: 1px solid var(--rule);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--rule);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--rule);
-        }
-
-        .feature-card {
-            background: var(--bg);
-            padding: 2rem;
-            transition: background 0.2s;
-        }
-
-        .feature-card:hover {
-            background: #f7f9ff;
-        }
-
-        .feature-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: var(--grad-navy-soft);
-            border: 1px solid rgba(26, 58, 107, 0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-num {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.62rem;
-            color: var(--navy-light);
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 0.6rem;
-            line-height: 1.3;
-        }
-
-        .feature-desc {
-            font-size: 0.82rem;
-            line-height: 1.7;
-            color: var(--ink2);
-        }
-
-        .feature-list {
-            margin-top: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .feature-list li {
-            font-size: 0.75rem;
-            color: var(--muted);
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'DM Mono', monospace;
-        }
-
-        .feature-list li::before {
-            content: '';
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: var(--navy-light);
-            flex-shrink: 0;
-        }
-
-        /* VIDEOS */
-        .videos-section {
-            border-top: 1px solid var(--rule);
-        }
-
-        .video-featured {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            background: var(--navy-dark);
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .video-featured:hover {
-            transform: scale(1.005);
-        }
-
-        .video-thumb {
-            position: relative;
-            background: #0a1628;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 240px;
-            overflow: hidden;
-        }
-
-        .thumb-grid {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-            background-size: 32px 32px;
-        }
-
-        .thumb-glow {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(35, 82, 160, 0.4) 0%, transparent 70%);
-        }
-
-        .play-btn {
-            position: relative;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--grad-navy);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 24px rgba(26, 58, 107, 0.5);
-            transition: transform 0.2s;
-            z-index: 2;
-        }
-
-        .video-featured:hover .play-btn,
-        .video-card:hover .play-btn {
-            transform: scale(1.1);
-        }
-
-        .play-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: #fff;
-            margin-left: 2px;
-        }
-
-        .video-featured-info {
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-
-        .vtag {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #6ea8fe;
-            font-weight: 500;
-        }
-
-        .vtitle {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-            line-height: 1.25;
-        }
-
-        .vdesc {
-            font-size: 0.82rem;
-            color: rgba(255, 255, 255, 0.5);
-            line-height: 1.65;
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .video-card {
-            background: var(--bg2);
-            border: 1px solid var(--rule);
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: border-color 0.2s, transform 0.2s;
-            display: block;
-        }
-
-        .video-card:hover {
-            border-color: rgba(26, 58, 107, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .video-card .video-thumb {
-            aspect-ratio: 16/9;
-            min-height: auto;
-            border-radius: 0;
-        }
-
-        .video-info {
-            padding: 1.2rem;
-            border-top: 1px solid var(--rule);
-        }
-
-        .video-info .vtag {
-            color: var(--navy-light);
-            margin-bottom: 0.4rem;
-        }
-
-        .video-info .vtitle {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--ink);
-            line-height: 1.3;
-            margin-bottom: 0.3rem;
-        }
-
-        .video-info .vdesc {
-            color: var(--muted);
-            font-size: 0.76rem;
-        }
-
-        /* TEAM */
-        .team-section {
-            background: var(--bg2);
-            border-top: 1px solid var(--rule);
-            border-bottom: 1px solid var(--rule);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .team-card {
-            background: var(--bg);
-            border: 1px solid var(--rule);
-            border-radius: 14px;
-            padding: 2rem;
-            transition: border-color 0.2s;
-        }
-
-        .team-card:hover {
-            border-color: rgba(26, 58, 107, 0.25);
-        }
-
-        .avatar {
-            width: 52px;
-            height: 52px;
-            border-radius: 12px;
-            background: var(--grad-navy);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: #fff;
-            font-family: 'DM Mono', monospace;
-            margin-bottom: 1rem;
-        }
-
-        .team-name {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 0.2rem;
-        }
-
-        .team-role {
-            font-size: 0.75rem;
-            color: var(--muted);
-            font-family: 'DM Mono', monospace;
-        }
-
-        .advisor-card {
-            background: var(--grad-navy-soft);
-            border: 1px solid rgba(26, 58, 107, 0.15);
-            border-radius: 14px;
-            padding: 1.5rem 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
-        .advisor-label {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.62rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--navy-light);
-            margin-bottom: 0.2rem;
-        }
-
-        /* STACK */
-        .stack-wrap {
-            margin-top: 3rem;
-            padding-top: 2.5rem;
-            border-top: 1px solid var(--rule);
-        }
-
-        .stack-label {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--muted);
-            margin-bottom: 1rem;
-        }
-
-        .stack-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .stack-pill {
-            background: var(--bg);
-            border: 1px solid var(--rule);
-            border-radius: 8px;
-            padding: 0.4rem 1rem;
-            font-size: 0.78rem;
-            font-family: 'DM Mono', monospace;
-            color: var(--ink2);
-            transition: border-color 0.2s;
-        }
-
-        .stack-pill:hover {
-            border-color: rgba(26, 58, 107, 0.35);
-        }
-
-        /* CTA */
-        .cta-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 3rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-            border-top: 1px solid var(--rule);
-        }
-
-        .cta-title {
-            font-size: clamp(2rem, 3.5vw, 3rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            color: var(--ink);
-        }
-
-        .cta-title span {
-            background: var(--grad-navy);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cta-desc {
-            font-size: 0.92rem;
-            color: var(--muted);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .cta-url {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--muted);
-            margin-top: 1rem;
-        }
-
-        /* FOOTER */
-        footer {
-            border-top: 1px solid var(--rule);
-            padding: 1.5rem 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .footer-note {
-            font-size: 0.75rem;
-            color: var(--muted);
-            font-family: 'DM Mono', monospace;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-links a {
-            font-size: 0.75rem;
-            color: var(--muted);
-            text-decoration: none;
-            font-family: 'DM Mono', monospace;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--ink);
-        }
-
-        /* MODAL */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            z-index: 200;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.25s;
-        }
-
-        .modal-overlay.open {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .modal {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            max-width: 860px;
-            width: 100%;
-            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.25);
-            transform: translateY(12px) scale(0.98);
-            transition: transform 0.25s;
-        }
-
-        .modal-overlay.open .modal {
-            transform: translateY(0) scale(1);
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 1.4rem;
-            border-bottom: 1px solid var(--rule);
-        }
-
-        .modal-title {
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--ink2);
-        }
-
-        .modal-close {
-            background: var(--bg2);
-            border: none;
-            color: var(--muted);
-            cursor: pointer;
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-
-        .modal-close:hover {
-            background: var(--rule);
-        }
-
-        .modal-video-wrap {
-            aspect-ratio: 16/9;
-            background: #111;
-        }
-
-        .modal-video-wrap iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
-        .modal-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            background: var(--bg2);
-        }
-
-        .modal-placeholder p {
-            font-size: 0.82rem;
-            color: var(--muted);
-            font-family: 'DM Mono', monospace;
-        }
-
-        .modal-placeholder a {
-            font-size: 0.78rem;
-            color: var(--navy);
-            text-decoration: none;
-            font-family: 'DM Mono', monospace;
-            border-bottom: 1px solid rgba(26, 58, 107, 0.3);
-            padding-bottom: 1px;
-        }
-
-        /* REVEAL */
-        .reveal {
-            opacity: 0;
-            transform: translateY(14px);
-            transition: opacity 0.55s ease, transform 0.55s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 860px) {
-            nav {
-                padding: 0 1.5rem;
-            }
-
-            nav ul {
-                display: none;
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-                padding: 90px 1.5rem 60px;
-                gap: 2.5rem;
-            }
-
-            .hero-visual {
-                display: none;
-            }
-
-            .stats-inner {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .section-wrap {
-                padding: 60px 1.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .video-featured {
-                grid-template-columns: 1fr;
-            }
-
-            .video-featured .video-thumb {
-                min-height: 200px;
-            }
-
-            .video-featured-info {
-                padding: 1.8rem;
-            }
-
-            .video-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-inner {
-                grid-template-columns: 1fr;
-                padding: 60px 1.5rem;
-                gap: 2rem;
-            }
-
-            footer {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MIPP — AI-Powered Interview Preparation &amp; Recruitment Ecosystem</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="assets/fonts.css" />
+
+    <!-- Phosphor Icons (v2) -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+
+    <!-- Base & layout -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+
+    <!-- Sections -->
+    <link rel="stylesheet" href="css/sections/hero.css" />
+    <link rel="stylesheet" href="css/sections/stats.css" />
+    <link rel="stylesheet" href="css/sections/features.css" />
+    <link rel="stylesheet" href="css/sections/videos.css" />
+    <link rel="stylesheet" href="css/sections/team.css" />
+    <link rel="stylesheet" href="css/sections/cta.css" />
+
+    <!-- Responsive overrides (always last) -->
+    <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
 <body>
 
+    <!-- ============================================================
+       NAV
+       ============================================================ -->
     <nav>
         <a href="#" class="logo">
-            <div class="logo-mark">M</div>
-            <span class="logo-text">MIPP</span>
+            <img src="assets/logos/mipp_logo.png" alt="MIPP" class="logo-img" />
         </a>
         <ul>
             <li><a href="#features">Features</a></li>
             <li><a href="#videos">Videos</a></li>
             <li><a href="#team">Team</a></li>
-            <li><a href="https://tinyurl.com/mipp-team6" target="_blank" class="nav-cta">GitHub ↗</a></li>
+            <li>
+                <a href="https://tinyurl.com/mipp-team6" target="_blank" class="nav-cta">
+                    GitHub
+                    <i class="ph ph-arrow-up-right"></i>
+                </a>
+            </li>
         </ul>
     </nav>
 
+    <!-- ============================================================
+       HERO
+       ============================================================ -->
     <div class="hero">
+
+        <!-- Left copy -->
         <div>
             <div class="hero-eyebrow">Mobile Interview Preparation Platform</div>
             <h1>AI-Powered Interview Prep &amp; <span>Recruitment Ecosystem</span></h1>
-            <p class="hero-desc">A modern mobile platform combining technical interview preparation, AI-powered
-                learning, real-time competition, and intelligent recruitment management in a single ecosystem.</p>
+            <p class="hero-desc">
+                A modern mobile platform combining technical interview preparation,
+                AI-powered learning, real-time competition, and intelligent recruitment
+                management in a single ecosystem.
+            </p>
             <div class="hero-chips">
                 <div class="chip">
-                    <div class="chip-dot"></div>TÜBİTAK BİGG Stage 1 — Accepted
+                    <div class="chip-dot"></div>
+                    TÜBİTAK BİGG Stage 1 — Accepted
                 </div>
                 <div class="chip">
-                    <div class="chip-dot"></div>AYBU Department of Computer Engineering
+                    <div class="chip-dot"></div>
+                    AYBU Department of Computer Engineering
                 </div>
             </div>
             <div class="hero-actions">
                 <a href="#videos" class="btn-primary">Watch demos</a>
-                <a href="https://tinyurl.com/mipp-team6" target="_blank" class="btn-ghost">GitHub ↗</a>
+                <a href="https://tinyurl.com/mipp-team6" target="_blank" class="btn-ghost">
+                    GitHub <i class="ph ph-arrow-up-right"></i>
+                </a>
             </div>
         </div>
+
+        <!-- Right visual grid -->
         <div class="hero-visual">
             <div class="hero-card">
-                <div class="card-icon">🏆</div>
+                <div class="card-icon"><i class="ph ph-trophy"></i></div>
                 <div class="card-title">Duel Mode</div>
                 <div class="card-sub">Real-time multiplayer<br>technical battles</div>
-                <div class="card-stat">Live</div>
+                <div class="card-stat live-stat">
+                    <span class="live-dot"></span>
+                    Live
+                </div>
             </div>
             <div class="hero-card">
-                <div class="card-icon">🧠</div>
+                <div class="card-icon"><i class="ph ph-brain"></i></div>
                 <div class="card-title">Practice</div>
                 <div class="card-sub">AI-powered feedback<br>&amp; WHY? analysis</div>
                 <div class="card-stat">1000+</div>
             </div>
             <div class="hero-card">
-                <div class="card-icon">🎯</div>
+                <div class="card-icon"><i class="ph ph-target"></i></div>
                 <div class="card-title">Interview Mode</div>
                 <div class="card-sub">Simulated real-world<br>recruitment flow</div>
             </div>
             <div class="hero-card">
-                <div class="card-icon">📊</div>
+                <div class="card-icon"><i class="ph ph-chart-bar"></i></div>
                 <div class="card-title">HR Platform</div>
                 <div class="card-sub">AI-assisted candidate<br>ranking &amp; analytics</div>
             </div>
         </div>
+
     </div>
 
+    <!-- ============================================================
+       STATS BAR
+       ============================================================ -->
     <div class="stats-bar">
         <div class="stats-inner">
             <div class="stat">
@@ -1062,25 +132,36 @@
                 <div class="stat-label">User modes</div>
             </div>
             <div class="stat">
-                <div class="stat-num">∞</div>
+                <div class="stat-num">&#8734;</div>
                 <div class="stat-label">Real-time duels</div>
             </div>
         </div>
     </div>
 
+    <!-- ============================================================
+       FEATURES
+       ============================================================ -->
     <section id="features" class="features-section">
         <div class="section-wrap">
             <div class="section-eyebrow">Platform Features</div>
-            <div class="section-title"><span class="section-title-grad">Everything</span> in one ecosystem</div>
-            <p class="section-desc">Candidate app and HR platform — two sides of the same intelligent system, built for
-                real-world hiring.</p>
+            <div class="section-title">
+                <span class="section-title-grad">Everything</span> in one ecosystem
+            </div>
+            <p class="section-desc">
+                Candidate app and HR platform — two sides of the same intelligent
+                system, built for real-world hiring.
+            </p>
+
             <div class="features-grid">
+
                 <div class="feature-card reveal">
                     <div class="feature-num">01</div>
-                    <div class="feature-icon">🧠</div>
+                    <div class="feature-icon"><i class="ph ph-brain"></i></div>
                     <div class="feature-title">Adaptive AI-Powered Practice</div>
-                    <div class="feature-desc">Improve problem-solving through interactive, AI-supported exercises with
-                        instant feedback and topic-based tracking.</div>
+                    <div class="feature-desc">
+                        Improve problem-solving through interactive, AI-supported exercises
+                        with instant feedback and topic-based tracking.
+                    </div>
                     <ul class="feature-list">
                         <li>Multiple Choice Questions</li>
                         <li>Coding Challenges</li>
@@ -1089,12 +170,15 @@
                         <li>WHY? Analysis System</li>
                     </ul>
                 </div>
+
                 <div class="feature-card reveal">
                     <div class="feature-num">02</div>
-                    <div class="feature-icon">⚔️</div>
+                    <div class="feature-icon"><i class="ph ph-sword"></i></div>
                     <div class="feature-title">Real-Time Multiplayer Duels</div>
-                    <div class="feature-desc">Compete in live technical battles through multiplayer matchmaking and
-                        real-time score tracking.</div>
+                    <div class="feature-desc">
+                        Compete in live technical battles through multiplayer matchmaking
+                        and real-time score tracking.
+                    </div>
                     <ul class="feature-list">
                         <li>Live multiplayer duels</li>
                         <li>Private room system</li>
@@ -1102,12 +186,15 @@
                         <li>XP reward progression</li>
                     </ul>
                 </div>
+
                 <div class="feature-card reveal">
                     <div class="feature-num">03</div>
-                    <div class="feature-icon">🎯</div>
+                    <div class="feature-icon"><i class="ph ph-video-camera"></i></div>
                     <div class="feature-title">AI-Assisted Technical Interviews</div>
-                    <div class="feature-desc">Structured interview environment — waiting rooms, live assessments, and
-                        AI-powered evaluation.</div>
+                    <div class="feature-desc">
+                        Structured interview environment — waiting rooms, live assessments,
+                        and AI-powered evaluation.
+                    </div>
                     <ul class="feature-list">
                         <li>Interview scheduling</li>
                         <li>Secure waiting room</li>
@@ -1116,12 +203,15 @@
                         <li>Submission tracking</li>
                     </ul>
                 </div>
+
                 <div class="feature-card reveal">
                     <div class="feature-num">04</div>
-                    <div class="feature-icon">📊</div>
+                    <div class="feature-icon"><i class="ph ph-users-three"></i></div>
                     <div class="feature-title">Intelligent Recruitment Management</div>
-                    <div class="feature-desc">The HR Platform enables recruiters to manage technical hiring with
-                        AI-assisted ranking and analytics.</div>
+                    <div class="feature-desc">
+                        The HR Platform enables recruiters to manage technical hiring with
+                        AI-assisted ranking and analytics.
+                    </div>
                     <ul class="feature-list">
                         <li>Job posting management</li>
                         <li>Candidate evaluation</li>
@@ -1130,12 +220,15 @@
                         <li>Technical analytics</li>
                     </ul>
                 </div>
+
                 <div class="feature-card reveal">
                     <div class="feature-num">05</div>
-                    <div class="feature-icon">🏠</div>
+                    <div class="feature-icon"><i class="ph ph-house"></i></div>
                     <div class="feature-title">Personalized Learning Hub</div>
-                    <div class="feature-desc">Home Dashboard with quick access to practice, leaderboards, streaks, and
-                        daily challenges through gamification.</div>
+                    <div class="feature-desc">
+                        Home Dashboard with quick access to practice, leaderboards,
+                        streaks, and daily challenges through gamification.
+                    </div>
                     <ul class="feature-list">
                         <li>XP progression</li>
                         <li>Activity streaks</li>
@@ -1143,12 +236,15 @@
                         <li>Global leaderboard</li>
                     </ul>
                 </div>
+
                 <div class="feature-card reveal">
                     <div class="feature-num">06</div>
-                    <div class="feature-icon">📈</div>
+                    <div class="feature-icon"><i class="ph ph-chart-line-up"></i></div>
                     <div class="feature-title">Topic-Based Progress Tracking</div>
-                    <div class="feature-desc">Monitor growth per topic with structured training modules, AI-generated
-                        explanations, and performance reports.</div>
+                    <div class="feature-desc">
+                        Monitor growth per topic with structured training modules,
+                        AI-generated explanations, and performance reports.
+                    </div>
                     <ul class="feature-list">
                         <li>Per-topic progress</li>
                         <li>Structured modules</li>
@@ -1156,44 +252,61 @@
                         <li>Performance reports</li>
                     </ul>
                 </div>
+
             </div>
         </div>
     </section>
 
+    <!-- ============================================================
+       VIDEOS
+       ============================================================ -->
     <section id="videos" class="videos-section">
         <div class="section-wrap">
             <div class="section-eyebrow">Demo Videos</div>
-            <div class="section-title"><span class="section-title-grad">See MIPP</span> in action</div>
-            <p class="section-desc">Watch the platform from every angle — practice, duels, interviews, and the HR
-                dashboard.</p>
+            <div class="section-title">
+                <span class="section-title-grad">See MIPP</span> in action
+            </div>
+            <p class="section-desc">
+                Watch the platform from every angle — practice, duels, interviews,
+                and the HR dashboard.
+            </p>
 
-            <div class="video-featured reveal" onclick="openModal('featured','Full Platform Overview')">
-                <div class="video-thumb">
+            <!-- Featured -->
+            <div class="video-featured reveal" onclick="openModal('featured', 'Full Platform Overview')">
+                <div class="video-thumb" data-video-src="assets/videos/demo.mp4" data-seek="1">
                     <div class="thumb-grid"></div>
                     <div class="thumb-glow"></div>
-                    <div class="play-btn"><svg viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                        </svg></div>
+                    <div class="play-btn">
+                        <i class="ph ph-play"></i>
+                    </div>
                 </div>
                 <div class="video-featured-info">
                     <div class="vtag">Featured · Full Demo</div>
                     <div class="vtitle">MIPP — Full Platform Overview</div>
-                    <div class="vdesc">The complete ecosystem in one video — adaptive practice, real-time duels,
-                        AI-assisted interviews, and the HR recruitment dashboard.</div>
-                    <div><span class="btn-primary" style="display:inline-block;cursor:pointer;"
-                            onclick="event.stopPropagation();openModal('featured','Full Platform Overview')">▶ Watch
-                            now</span></div>
+                    <div class="vdesc">
+                        The complete ecosystem in one video — adaptive practice,
+                        real-time duels, AI-assisted interviews, and the HR
+                        recruitment dashboard.
+                    </div>
+                    <div>
+                        <span class="btn-primary"
+                            onclick="event.stopPropagation(); openModal('featured', 'Full Platform Overview')">
+                            <i class="ph ph-play"></i> Watch now
+                        </span>
+                    </div>
                 </div>
             </div>
 
+            <!-- Grid -->
             <div class="video-grid">
-                <div class="video-card reveal" onclick="openModal('v1','Duel Mode Demo')">
-                    <div class="video-thumb">
+
+                <div class="video-card reveal" onclick="openModal('v1', 'Duel Mode Demo')">
+                    <div class="video-thumb" data-video-src="assets/videos/demo.mp4" data-seek="3">
                         <div class="thumb-grid"></div>
                         <div class="thumb-glow"></div>
-                        <div class="play-btn" style="width:44px;height:44px;"><svg viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg></div>
+                        <div class="play-btn">
+                            <i class="ph ph-play"></i>
+                        </div>
                     </div>
                     <div class="video-info">
                         <div class="vtag">Duel Mode</div>
@@ -1201,27 +314,29 @@
                         <div class="vdesc">Live matchmaking, private rooms, instant score tracking.</div>
                     </div>
                 </div>
-                <div class="video-card reveal" onclick="openModal('v2','Practice System Demo')">
-                    <div class="video-thumb">
+
+                <div class="video-card reveal" onclick="openModal('v2', 'Practice System Demo')">
+                    <div class="video-thumb" data-video-src="assets/videos/demo.mp4" data-seek="6">
                         <div class="thumb-grid"></div>
                         <div class="thumb-glow"></div>
-                        <div class="play-btn" style="width:44px;height:44px;"><svg viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg></div>
+                        <div class="play-btn">
+                            <i class="ph ph-play"></i>
+                        </div>
                     </div>
                     <div class="video-info">
                         <div class="vtag">Practice System</div>
-                        <div class="vtitle">AI-Powered Questions & Feedback</div>
+                        <div class="vtitle">AI-Powered Questions &amp; Feedback</div>
                         <div class="vdesc">WHY? analysis, instant explanations, topic progress.</div>
                     </div>
                 </div>
-                <div class="video-card reveal" onclick="openModal('v3','HR Platform Demo')">
-                    <div class="video-thumb">
+
+                <div class="video-card reveal" onclick="openModal('v3', 'HR Platform Demo')">
+                    <div class="video-thumb" data-video-src="assets/videos/demo.mp4" data-seek="9">
                         <div class="thumb-grid"></div>
                         <div class="thumb-glow"></div>
-                        <div class="play-btn" style="width:44px;height:44px;"><svg viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg></div>
+                        <div class="play-btn">
+                            <i class="ph ph-play"></i>
+                        </div>
                     </div>
                     <div class="video-info">
                         <div class="vtag">HR Platform</div>
@@ -1229,40 +344,57 @@
                         <div class="vdesc">Candidate ranking, interview scheduling, analytics.</div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
+    <!-- ============================================================
+       TEAM
+       ============================================================ -->
     <section id="team" class="team-section">
         <div class="section-wrap">
             <div class="section-eyebrow">The Team</div>
-            <div class="section-title"><span class="section-title-grad">Built at</span> AYBU</div>
-            <p class="section-desc">Department of Computer Engineering, Ankara Yıldırım Beyazıt University.</p>
+            <div class="section-title">
+                <span class="section-title-grad">Built at</span> AYBU
+            </div>
+            <p class="section-desc">
+                Department of Computer Engineering, Ankara Yıldırım Beyazıt University.
+            </p>
+
             <div class="team-grid">
                 <div class="team-card reveal">
                     <div class="avatar">ES</div>
                     <div class="team-name">Emine Sena Top</div>
-                    <div class="team-role">Flutter · Firebase · AI Integration</div>
+                    <div class="team-role">
+                        Backend Architecture · Firebase · Firestore
+                    </div>
                 </div>
                 <div class="team-card reveal">
                     <div class="avatar">RY</div>
                     <div class="team-name">Rümeysa Yavuzkanat</div>
-                    <div class="team-role">Mobile Developer · UI/UX</div>
+                    <div class="team-role">
+                        System Architecture · Frontend Engineering · UI/UX
+                    </div>
                 </div>
                 <div class="team-card reveal">
                     <div class="avatar">EÜ</div>
                     <div class="team-name">Ege Ündeniş</div>
-                    <div class="team-role">Backend · Firestore</div>
+                    <div class="team-role">
+                        AI Systems · AI Evaluation · LLM Integration
+                    </div>
                 </div>
             </div>
+
             <div class="advisor-card reveal">
-                <div class="avatar" style="flex-shrink:0;">MFD</div>
+                <div class="avatar">FD</div>
                 <div>
                     <div class="advisor-label">Supervisor</div>
                     <div class="team-name">Prof. Dr. M. Fatih Demirci</div>
                     <div class="team-role">AYBU Department of Computer Engineering</div>
                 </div>
             </div>
+
             <div class="stack-wrap">
                 <div class="stack-label">Tech Stack</div>
                 <div class="stack-pills">
@@ -1279,80 +411,72 @@
         </div>
     </section>
 
+    <!-- ============================================================
+       CTA
+       ============================================================ -->
     <div class="cta-inner">
-        <div class="cta-title">Explore the <span>source code.</span></div>
-        <div>
-            <p class="cta-desc">All source code, documentation, and demo materials live on GitHub. Scan the QR on our
-                poster or visit the link directly.</p>
-            <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
-                <a href="https://tinyurl.com/mipp-team6" target="_blank" class="btn-primary">Visit GitHub →</a>
+        <div class="cta-title reveal">
+            Explore the <span>source code.</span>
+        </div>
+        <div class="reveal">
+            <p class="cta-desc">
+                All source code, documentation, and demo materials live on GitHub.
+                Scan the QR on our poster or visit the link directly.
+            </p>
+            <div class="cta-actions">
+                <a href="https://tinyurl.com/mipp-team6" target="_blank" class="btn-primary">
+                    Visit GitHub <i class="ph ph-arrow-up-right"></i>
+                </a>
                 <a href="#videos" class="btn-ghost">Watch demos</a>
             </div>
             <div class="cta-url">tinyurl.com/mipp-team6</div>
         </div>
     </div>
 
+    <!-- ============================================================
+       FOOTER
+       ============================================================ -->
     <footer>
-        <div style="display:flex;align-items:center;gap:1.5rem;">
+        <div class="footer-left">
             <a href="#" class="logo">
-                <div class="logo-mark">M</div><span class="logo-text">MIPP</span>
+                <img src="assets/logos/mipp_logo.png" alt="MIPP" class="logo-img" />
             </a>
-            <div class="footer-note">© 2025 Team 6 · AYBU Computer Engineering · BİGGGARAJ</div>
+            <div class="footer-note">
+                &copy; 2025 Team 6 · AYBU Computer Engineering · BİGGGARAJ
+            </div>
         </div>
         <div class="footer-links">
             <a href="#features">Features</a>
             <a href="#videos">Videos</a>
             <a href="#team">Team</a>
-            <a href="https://tinyurl.com/mipp-team6" target="_blank">GitHub ↗</a>
+            <a href="https://tinyurl.com/mipp-team6" target="_blank">
+                GitHub <i class="ph ph-arrow-up-right"></i>
+            </a>
         </div>
     </footer>
 
+    <!-- ============================================================
+       MODAL
+       ============================================================ -->
     <div class="modal-overlay" id="modal" onclick="closeModal(event)">
         <div class="modal">
             <div class="modal-header">
                 <div class="modal-title" id="modal-title">Video</div>
-                <button class="modal-close" onclick="closeModalDirect()">✕</button>
+                <button class="modal-close" onclick="closeModalDirect()">
+                    <i class="ph ph-x"></i>
+                </button>
             </div>
             <div class="modal-video-wrap" id="modal-body"></div>
         </div>
     </div>
 
-    <script>
-        // YouTube embed:  https://www.youtube.com/embed/VIDEO_ID
-        // Google Drive:   https://drive.google.com/file/d/FILE_ID/preview
-        const videoLinks = {
-            featured: "",
-            v1: "",
-            v2: "",
-            v3: "",
-        };
+    <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+    <script src="js/modal.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="js/thumbnails.js"></script>
 
-        function openModal(id, title) {
-            const link = videoLinks[id];
-            document.getElementById('modal-title').textContent = title;
-            const body = document.getElementById('modal-body');
-            if (link) {
-                body.innerHTML = `<iframe src="${link}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-            } else {
-                body.innerHTML = `<div class="modal-placeholder"><p>Video link not yet added.</p><a href="https://tinyurl.com/mipp-team6" target="_blank">View on GitHub ↗</a></div>`;
-            }
-            document.getElementById('modal').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(e) { if (e.target.id === 'modal') closeModalDirect(); }
-        function closeModalDirect() {
-            document.getElementById('modal').classList.remove('open');
-            document.getElementById('modal-body').innerHTML = '';
-            document.body.style.overflow = '';
-        }
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
-
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-    </script>
 </body>
 
 </html>
